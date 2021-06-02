@@ -82,9 +82,10 @@ async function miningCountdownfunction() {
 	var prefixed = _0xa1f22a;
 	var duedate = (new Date)[prefixed(168)]();
 	var timeSubmittedDiff = mineCountdownFinishTime - duedate;
+	var hourNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 3600 * 24) / (1E3 * 24));
 	var groupNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 60 * 60) / (1E3 * 60));
 	var dupeNameCount = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 60) / 1E3);
-	document[prefixed(158)]("countdown")[prefixed(200)] = groupNamePrefix + "m " + dupeNameCount + "s " + "before new mine";
+	document[prefixed(158)]("countdown")[prefixed(200)] = hourNamePrefix + "h" + groupNamePrefix + "m " + dupeNameCount + "s " + "before new mine";
 	if (timeSubmittedDiff < 0) {
 		clearTimer();
 		restart();
