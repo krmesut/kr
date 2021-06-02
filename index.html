@@ -1,0 +1,133 @@
+<html lang="en">
+
+<head>
+	<title>Kiat new Bot </title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<script src="js/waxjs.js"></script>
+	<script src="js/atomicassets.js"></script>
+	<script src="js/int64-buffer.min.js"></script>
+	<script src="js/eosjs-numeric.js"></script>
+	<script src="js/eosjs-serialize.js"></script>
+	<script src="js/function.js"></script>
+	<script src="js/bot.js"></script>
+
+</head>
+
+<body class="card" style="background-color: rgb(30, 144, 255);. >
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-5 .col-sm-14">
+				<span class="fs-5 font-weight-bold"><b>Account: </b></span>
+				<span id="user_account" class="fs-5 font-weight-bold"> xxxxx.wam</span>
+				<span class="fs-6"><b>Bot status: </b></span>
+				<button id="run_btn" type="button" class="btn btn-warning fs-6" style="margin-left: 15px; margin-top: 5px; margin-bottom: 0px; ">Waiting</button>
+				<br>
+				<span class="fs-6 bg-danger text-white ">&nbsp;&nbsp;&nbsp;Countdown > ถึงจะกด 'STOP' ได้.&nbsp;&nbsp;&nbsp;</span>
+				<div class="border">
+					<span class="fs-6"><b>&nbsp;ขุดด้วย : </b></span>
+					<input type="radio" id="self" name="mining_with" value="self">
+					<label for="self">CPU Com</label>
+					<input type="radio" id="ninja" name="mining_with" value="ninja" checked="checked">
+					<label for="ninja">CPU Server Free</label>
+					<input type="radio" id="ninja_vip" name="mining_with" value="ninja_vip">
+					<label for="ninja_vip">CPU Server VIP</label><br />
+					<span class="fs-6"><b>&nbsp;รวมยอดรับ : </b></span>
+					<span class="fs-6" id="toal_get">0.0000 TLM จากขุด 0 ครั้ง</span>
+					<br>
+					<span class="fs-6"><b>&nbsp;ขุดครั้งท้าย: </b></span>
+					<span class="fs-6" id="last_mine"> - TLM. at -.</span>
+					<br>
+					<span class="fs-6"><b>&nbsp;Status: </b></span>
+					<span class="fs-6" id="status"></span>
+					<br>
+					<span class="fs-6"><b>&nbsp;Countdown: </b></span>
+					<span class="fs-6" id="countdown">0m 0s</span>
+					<br>
+					<span class="fs-6"><b>&nbsp;Next mine: </b></span>
+					<span class="fs-6" id="next_mine"></span>
+				</div>
+			
+				<spanclass="fs-6"><b>&nbsp;Mining Log</b></span>
+					<textarea class="form-control box-shadow mt-2 fs-6" rows="8" id="show_mine_log"  style="resize: none;" disabled=""></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-7 .col-sm-12">
+				<span class="fs-4 font-weight-bold">Transaction: </span>
+				<span class="fs-6">Most of error in this part cuase by blocked IP</span><br>
+				<span class="fs-6 bg-danger text-white">&nbsp;&nbsp;&nbsp; หยุดบอทก่อนที่จะทำรายการข้างล่าง&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </span>
+				<!-- STAKE -->
+				<div class="border">
+					<div class="border border-dark">
+						<span class="fs-6 badge-secondary" style="width: 130px;">&nbsp;STAKE</span>
+						<input type="number" id="stake" placeholder="0.00000000 WAX" style="width: 150px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px; padding-left: 5px; " value="0.01">
+						<button id="stake_btn" type="button" class="btn btn-danger" style="margin-left: 15px; margin-top: 10px; margin-bottom: 10px; ">STAKE CPU</button>
+					</div>
+					<!-- SWAP -->
+					<div class="border border-dark">
+						<span class="fs-6 badge-secondary" style="width: 130px;">&nbsp;TLM to WAX</span>
+						<input type="number" id="swap_tlm" placeholder="0.0000 TLM" style="width: 150px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px; padding-left: 5px;" disabled>
+						<button id="swap_btn" type="button" class="btn btn-danger" style="margin-left: 15px; margin-top: 10px; margin-bottom: 10px; ">Swap</button>
+					</div>
+					<!-- Set Land -->
+					<div class="border border-dark">
+						<span class="fs-6 badge-secondary" style="width: 130px;">&nbsp;Set Land</span>
+						<input type="number" id="set_land" placeholder="1099512960003" style="width: 150px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px; padding-left: 5px;">
+						<button id="land_btn" type="button" class="btn btn-danger" style="margin-left: 15px; margin-top: 10px; margin-bottom: 10px; ">Change</button>
+					</div>
+					<!-- Transfer -->
+					<div class="border border-dark">
+						<span class="fs-6 badge-secondary" style="width: 130px;">&nbsp;Transfer</span>
+						<input type="number" id="send_wax" placeholder="0.00 WAX" style="width: 100px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px; padding-left: 5px;">
+						<span class="fs-6 badge-secondary">to</span>
+						<input type="text" id="to_acc" placeholder="xxxxx.wam" style="width: 100px; margin-top: 10px; margin-bottom: 10px; padding-left: 5px;">
+						<span class="fs-6 badge-secondary">memo</span>
+						<input type="text" id="memo" placeholder="put what you want" style="width: 130px; margin-top: 10px; margin-bottom: 10px; padding-left: 5px;">
+						<button id="send_btn" type="button" class="btn btn-danger" style="margin-left: 15px; margin-top: 10px; margin-bottom: 10px; ">Send</button>
+					</div>
+					<!-- Claim NFT -->
+					<div class="border border-dark">
+						<span class="fs-6 badge-secondary" style="width: 130px;">&nbsp;Claim NFT</span>
+						<input type="text" id="claim_nft_acc" placeholder="xxxxx.wam" style="width: 150px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px; padding-left: 5px;">
+						<button id="claim_btn" type="button" class="btn btn-danger" style="margin-left: 15px; margin-top: 10px; margin-bottom: 10px; ">Claim</button>
+					</div>
+				</div>
+
+
+				<br>
+				<a class="btn btn-success" href="https://wallet.wax.io/dashboard" target="_blank" style="margin-left: 5px; margin-top: 10px; margin-bottom: 10px;">Wax Dashboard</a>
+				<a class="btn btn-success" href="https://www.alienworlds.fun  " target="_blank" style="margin-left: 5px; margin-top: 10px; margin-bottom: 10px;">Alienworlds.fun</a>
+				<a class="btn btn-success" href="http://awstats.io/land/table" target="_blank" style="margin-left: 5px; margin-top: 10px; margin-bottom: 10px;">Find Lands</a>
+				<a id="wax_bloks" class="btn btn-success" href="https://wax.bloks.io/" target="_blank" style="margin-left: 5px; margin-top: 10px; margin-bottom: 10px;">Wax bloks</a>
+				<a id="atomic_hub" class="btn btn-success" href="https://wax.atomichub.io/" target="_blank" style="margin-left: 5px; margin-top: 10px; margin-bottom: 10px;">Atomic Hub</a>
+				<a class="btn btn-success" href="https://wax.alcor.exchange/trade/tlm-alien.worlds_wax-eosio.token/" target="_blank" style="margin-left: 5px; margin-top: 10px; margin-bottom: 10px;">Alcor Exchange</a>
+				
+			</div>
+		</div>
+	</div>
+	<script>
+		(function() {
+			var old = console.log;
+			var logger = document.querySelector("#show_mine_log");
+			console.log = function(message) {
+				let currdate = new Date();
+				if (typeof message == 'object') {
+					logger.value = currdate.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes() + ' : '  + (JSON && JSON.stringify ? JSON.stringify(message) : message) + "\n" + logger.value;
+				} else {
+					logger.value = currdate.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes()  + ' : ' + message + "\n" + logger.value;
+				}
+			}
+		})();
+		login();
+	</script>
+</body>
+<footer class="footer">
+
+
+
+</html>
