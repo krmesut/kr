@@ -68,7 +68,7 @@ async function chargingCountdownfunction() {
 	var prefixed = _0xa1f22a;
 	var duedate = (new Date)[prefixed(168)]();
 	var timeSubmittedDiff = mineCountdownFinishTime - duedate;
-	var hourNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 3600 * 24) / (1E3 * 360));
+	var hourNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 3600 * 24) / (1E3 * 3600));
 	var groupNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 60 * 60) / (1E3 * 60));
 	var dupeNameCount = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 60) / 1E3);
 	document["getElementById"](prefixed(202))["innerHTML"] = hourNamePrefix + "h " + groupNamePrefix + "m " + dupeNameCount + "s " + prefixed(195);
