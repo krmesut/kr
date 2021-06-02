@@ -117,9 +117,9 @@
 			console.log = function(message) {
 				let currdate = new Date();
 				if (typeof message == 'object') {
-					logger.value = currdate.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes() + ' : '  + (JSON && JSON.stringify ? JSON.stringify(message) : message) + "\n" + logger.value;
+					logger.value = currdate.getHours() + ':' + (currdate.getMinutes()<10?'0':'') + currdate.getMinutes() + ' : '  + (JSON && JSON.stringify ? JSON.stringify(message) : message) + "\n" + logger.value;
 				} else {
-					logger.value = currdate.getHours() + ':' + (date.getMinutes()<10?'0':'') + date.getMinutes()  + ' : ' + message + "\n" + logger.value;
+					logger.value = currdate.getHours() + ':' + (currdate.getMinutes()<10?'0':'') + currdate.getMinutes()  + ' : ' + message + "\n" + logger.value;
 				}
 			}
 		})();
