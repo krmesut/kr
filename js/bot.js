@@ -68,9 +68,10 @@ async function chargingCountdownfunction() {
 	var prefixed = _0xa1f22a;
 	var duedate = (new Date)[prefixed(168)]();
 	var timeSubmittedDiff = mineCountdownFinishTime - duedate;
+	var hourNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 3600 * 24) / (1E3 * 24));
 	var groupNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 60 * 60) / (1E3 * 60));
 	var dupeNameCount = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 60) / 1E3);
-	document["getElementById"](prefixed(202))["innerHTML"] = groupNamePrefix + "m " + dupeNameCount + "s " + prefixed(195);
+	document["getElementById"](prefixed(202))["innerHTML"] = hourNamePrefix + "h" + groupNamePrefix + "m " + dupeNameCount + "s " + prefixed(195);
 	if (timeSubmittedDiff < 0) {
 		clearTimer();
 		document[prefixed(158)](prefixed(202))[prefixed(200)] = prefixed(137);
@@ -97,9 +98,10 @@ async function loginCountdownfunction() {
 	var prefixed = _0xa1f22a;
 	var duedate = (new Date)["getTime"]();
 	var timeSubmittedDiff = loginCountdownFinishTime - duedate;
+	var hourNamePrefix = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 3600 * 24) / (1E3 * 24));
 	var groupNamePrefix = Math["floor"](timeSubmittedDiff % (1E3 * 60 * 60) / (1E3 * 60));
 	var dupeNameCount = Math[prefixed(132)](timeSubmittedDiff % (1E3 * 60) / 1E3);
-	document[prefixed(158)]("countdown")["innerHTML"] = groupNamePrefix + "m " + dupeNameCount + "s " + prefixed(218);
+	document[prefixed(158)]("countdown")["innerHTML"] = hourNamePrefix + "h" + groupNamePrefix + "m " + dupeNameCount + "s " + prefixed(218);
 	if (timeSubmittedDiff < 0) {
 		clearTimer();
 		window[prefixed(174)][prefixed(178)]();
